@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ff8fb8">
+<meta name="color-scheme" content="light">
+<title>Pat's Day 💗</title>
+<link rel="preload" as="image" href="scene5.webp" fetchpriority="high">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Itim&family=Kanit:wght@400;500;600;700&display=swap');
+:root{
+ --pink:#ff82b0;--pink2:#f56f9f;--deep:#d94f83;--ink:#75475b;
+ --muted:#a66c82;--line:#f1c5d5;--paper:#fff9fc;--checked:#e7e7e7;
+ --shadow:0 16px 42px rgba(176,74,113,.14);
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#fff1f7;color:var(--ink)}
+html{scroll-behavior:smooth}
+body{
+ font-family:Kanit,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+ display:flex;justify-content:center;overscroll-behavior:none;
+}
+button,input,label{font:inherit}
+button,label{-webkit-tap-highlight-color:transparent}
+button{touch-action:manipulation}
+.app{
+ width:min(100%,430px);min-height:100dvh;position:relative;overflow:hidden;
+ background:
+  radial-gradient(circle at 14% 8%,rgba(255,255,255,.95),transparent 24%),
+  linear-gradient(180deg,#fff9fc 0%,#ffe9f2 100%);
+}
+.screen{
+ display:none;min-height:100dvh;
+ padding:calc(15px + env(safe-area-inset-top)) 18px calc(22px + env(safe-area-inset-bottom));
+}
+.screen.active{display:flex;flex-direction:column;animation:enter .24s ease both}
+@keyframes enter{from{opacity:0;transform:translate3d(9px,0,0)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
+
+.brand{
+ font:64px/.84 Itim,cursive;text-align:center;color:var(--deep);margin:12px 0 0;
+ text-shadow:3px 4px 0 #fff,0 9px 20px rgba(235,135,171,.42)
+}
+.subtitle,.kicker,.small,.footer{text-align:center;color:var(--muted)}
+.subtitle{font-size:16px;margin:12px 0 7px}
+.small,.footer{font-size:12px;margin-top:9px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.progress{display:flex;gap:4px}.progress i{font-style:normal;color:#f7bfd0;font-size:17px}.progress i.on{color:#ff719f}
+.badge{
+ background:linear-gradient(180deg,#ff94ba,#fa76a5);color:#fff;border-radius:999px;
+ padding:5px 11px;font-size:13px;font-weight:600;box-shadow:0 5px 12px rgba(245,111,159,.2)
+}
+.title,.end-title{text-align:center;color:var(--deep);font-weight:700}
+.title{font-size:27px;line-height:1.16;margin:11px 6px 2px}
+.kicker{font-size:14px;margin:0 0 3px}
+.end-title{font-size:32px;line-height:1.12;margin:9px 0 2px}
+.end-note{text-align:center;color:#956276;font-size:14px;margin:4px 0 3px}
+
+.media-frame{
+ width:100%;aspect-ratio:4/5;flex:0 0 auto;
+ margin:8px auto 11px;border-radius:22px;overflow:hidden;
+ background:#f4dce5;box-shadow:var(--shadow);
+ border:1px solid rgba(255,255,255,.8);
+}
+.media-frame img{
+ width:100%;height:100%;display:block;object-fit:cover;object-position:center;
+ user-select:none;-webkit-user-drag:none
+}
+#s1 .media-frame{margin-top:6px}
+
+.quest{
+ margin-top:auto;background:rgba(255,255,255,.96);border:1px solid var(--line);
+ border-radius:22px;padding:7px 11px;box-shadow:var(--shadow)
+}
+.check{
+ display:flex;align-items:center;gap:11px;padding:12px 6px;border-radius:11px;
+ border-bottom:1px dashed #f0ccd8;font-size:15px;cursor:pointer;
+ transition:background .16s ease,transform .08s ease
+}
+.check:last-child{border-bottom:0}.check:active{transform:scale(.996)}
+.check input{
+ appearance:none;width:23px;height:23px;flex:0 0 23px;margin:0;position:relative;
+ border:2px solid #e7a0b9;border-radius:7px;background:#fff
+}
+.check input:checked{background:#bcbcbc;border-color:#bcbcbc}
+.check input:checked::after{
+ content:"✓";position:absolute;left:4px;top:-1px;color:white;font-weight:700;font-size:16px
+}
+.check.done{background:var(--checked)}
+.check.done span{text-decoration:none;color:var(--ink)}
+
+.cta{
+ width:100%;border:0;border-radius:999px;padding:14px 18px;color:#fff;
+ background:linear-gradient(180deg,#ff9fc1,#f56f9f);
+ font-weight:600;font-size:18px;cursor:pointer;
+ box-shadow:0 9px 22px rgba(245,111,159,.27);
+ transition:transform .1s ease,filter .16s ease,opacity .16s ease
+}
+.cta:active:not(:disabled){transform:scale(.985)}
+.cta:focus-visible,.check input:focus-visible{outline:3px solid rgba(217,79,131,.28);outline-offset:3px}
+.cta:disabled{background:#e3dde0;color:#aaa;box-shadow:none;cursor:not-allowed;opacity:.9}
+.next{margin-top:11px}
+
+@media(max-height:750px){
+ .brand{font-size:51px}.title{font-size:23px}.end-title{font-size:27px}
+ .screen{padding-top:calc(10px + env(safe-area-inset-top))}
+ .media-frame{max-height:44dvh;margin:6px auto 8px}
+ .check{padding:9px 5px}.cta{padding:12px 16px;font-size:17px}
+}
+</style>
+</head>
+<body>
+<main class="app" aria-live="polite">
+<section class="screen active" id="s1" data-page="1">
+ <div class="brand">Pat's<br>Day</div>
+ <div class="subtitle">Birthday adventure for Pat 💗</div>
+ <div class="media-frame"><img src="scene5.webp" alt="Pat เต็มตัวในสวนปราสาท" fetchpriority="high"></div>
+ <button class="cta" type="button" data-go="2">เริ่มผจญภัย ✨</button>
+ <div class="small">A tiny adventure made just for Pat</div>
+</section>
+
+<section class="screen" id="s2" data-page="2">
+ <div class="top"><div class="progress"><i class="on">♡</i><i>♡</i><i>♡</i><i>♡</i><i>♡</i></div><div class="badge">2 / 5</div></div>
+ <div class="title">เติมพลังก่อนเริ่มต้น<br>Pat's Day 🍓</div>
+ <div class="kicker">เติมพลังด้วยขนมที่ร้าน Good haus</div>
+ <div class="media-frame"><img src="scene1.webp" alt="Pat กิน Croffle" loading="lazy"></div>
+ <div class="quest" data-quest="2">
+  <label class="check"><input type="checkbox"><span>🥐 สั่งขนม Croffle</span></label>
+  <label class="check"><input type="checkbox"><span>🥤 สั่งน้ำอร่อย</span></label>
+  <label class="check"><input type="checkbox"><span>📷 ถ่ายรูปด้วยกล้องฟิล์ม</span></label>
+ </div>
+ <button class="cta next" type="button" disabled data-go="3">ทำภารกิจถัดไป →</button>
+</section>
+
+<section class="screen" id="s3" data-page="3">
+ <div class="top"><div class="progress"><i>♡</i><i class="on">♡</i><i>♡</i><i>♡</i><i>♡</i></div><div class="badge">3 / 5</div></div>
+ <div class="title">เริ่มต้นทำ Work shop<br>สุดโปรด 🌷</div>
+ <div class="media-frame"><img src="scene2.webp" alt="Pat จัดช่อดอกไม้" loading="lazy"></div>
+ <div class="quest" data-quest="3">
+  <label class="check"><input type="checkbox"><span>🌷 ทำผลงานอย่างน้อย 2 ชิ้น</span></label>
+  <label class="check"><input type="checkbox"><span>📷 ถ่ายรูปด้วยกล้องฟิล์ม</span></label>
+ </div>
+ <button class="cta next" type="button" disabled data-go="4">ทำภารกิจถัดไป →</button>
+</section>
+
+<section class="screen" id="s4" data-page="4">
+ <div class="top"><div class="progress"><i>♡</i><i>♡</i><i class="on">♡</i><i>♡</i><i>♡</i></div><div class="badge">4 / 5</div></div>
+ <div class="title">ร้านโปรดในดวงใจ<br>🥩💗</div>
+ <div class="kicker">ปิดวันด้วยมื้อโปรด</div>
+ <div class="media-frame"><img src="scene3.webp" alt="Pat กินหมูย่างเกาหลี" loading="lazy"></div>
+ <div class="quest" data-quest="4">
+  <label class="check"><input type="checkbox"><span>🥩 สั่งเมนูใหม่ในร้าน</span></label>
+  <label class="check"><input type="checkbox"><span>🍝 กินรีซอสโต้ของโปรด</span></label>
+  <label class="check"><input type="checkbox"><span>📷 ถ่ายรูปด้วยกล้องฟิล์ม</span></label>
+ </div>
+ <button class="cta next" type="button" disabled data-go="5">ทำภารกิจถัดไป →</button>
+</section>
+
+<section class="screen" id="s5" data-page="5">
+ <div class="top"><div class="progress"><i>♡</i><i>♡</i><i>♡</i><i class="on">♡</i><i class="on">♡</i></div><div class="badge">5 / 5</div></div>
+ <div class="end-title">จบวันอย่างสวยงาม 🌙💗</div>
+ <div class="end-note">ขอบคุณที่ออกผจญภัยด้วยกันนะ<br>ขอให้วันเกิดของ Pat น่ารักที่สุดเลย ✨</div>
+ <div class="media-frame"><img src="scene4.webp" alt="Pat กับรถสีเขียวเต็มคัน" loading="lazy"></div>
+ <button class="cta" type="button" id="endBtn">End 🏠</button>
+ <div class="footer">Made with love, just for Pat ♡</div>
+</section>
+</main>
+
+<script>
+(()=>{
+ const screens=[...document.querySelectorAll('.screen')];
+ const stateKey='pats-day-progress-v1';
+
+ function showPage(n){
+  const target=document.getElementById('s'+n);
+  if(!target)return;
+  screens.forEach(s=>s.classList.toggle('active',s===target));
+  history.replaceState(null,'','#page-'+n);
+  try{sessionStorage.setItem('pats-day-current-page',String(n))}catch(e){}
+  window.scrollTo({top:0,left:0,behavior:'auto'});
+ }
+
+ function syncQuest(q){
+  const boxes=[...q.querySelectorAll('input[type=checkbox]')];
+  const btn=q.parentElement.querySelector('.next');
+  boxes.forEach(c=>c.closest('.check').classList.toggle('done',c.checked));
+  if(btn)btn.disabled=boxes.some(c=>!c.checked);
+ }
+
+ function saveProgress(){
+  const data=[...document.querySelectorAll('.quest')].map(q=>(
+   [...q.querySelectorAll('input[type=checkbox]')].map(c=>c.checked)
+  ));
+  try{sessionStorage.setItem(stateKey,JSON.stringify(data))}catch(e){}
+ }
+
+ function restoreProgress(){
+  try{
+   const raw=sessionStorage.getItem(stateKey);
+   if(!raw)return;
+   const data=JSON.parse(raw);
+   document.querySelectorAll('.quest').forEach((q,qi)=>{
+    [...q.querySelectorAll('input[type=checkbox]')].forEach((c,ci)=>{c.checked=!!data?.[qi]?.[ci]});
+    syncQuest(q);
+   });
+  }catch(e){}
+ }
+
+ document.addEventListener('click',e=>{
+  const btn=e.target.closest('[data-go]');
+  if(btn&&!btn.disabled)showPage(Number(btn.dataset.go));
+ });
+
+ document.querySelectorAll('.quest').forEach(q=>{
+  q.addEventListener('change',()=>{syncQuest(q);saveProgress()});
+  syncQuest(q);
+ });
+
+ document.getElementById('endBtn').addEventListener('click',()=>{
+  document.querySelectorAll('.quest input[type=checkbox]').forEach(c=>c.checked=false);
+  document.querySelectorAll('.quest').forEach(syncQuest);
+  try{sessionStorage.removeItem(stateKey);sessionStorage.removeItem('pats-day-current-page')}catch(e){}
+  showPage(1);
+ });
+
+ restoreProgress();
+ let initial=1;
+ const hashMatch=location.hash.match(/page-(\d)/);
+ if(hashMatch)initial=Math.min(5,Math.max(1,Number(hashMatch[1])));
+ showPage(initial);
+})();
+</script>
+</body>
+</html>
